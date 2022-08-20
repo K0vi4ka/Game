@@ -42,6 +42,7 @@
   background-color: rgb(255, 255, 255);
   transform: translateX(2000px);
   will-change: transform;
+  z-index: 0;
   &.fast{
     animation: starMove 3s linear infinite;
   }
@@ -55,10 +56,9 @@
 
 @keyframes starMove{
   from{
-    transform: translateX(2000px);
   }
   to{
-    transform: translateX(0);
+    transform: translateX(-10%);
   }
 
 }

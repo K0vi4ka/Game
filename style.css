@@ -53,11 +53,8 @@
 }
 
 @keyframes starMove {
-  from {
-    transform: translateX(2000px);
-  }
   to {
-    transform: translateX(0);
+    transform: translateX(-10%);
   }
 }
 

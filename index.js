@@ -6,9 +6,11 @@ function Star(){
     for(let i = 1; i < 31; i++){
       const p = document.createElement('p');
       p.classList.add('star');
-      p.style.transform = `translateY(${Math.floor(Math.random() * 80)}vh)`;
+      p.style.top = Math.floor(Math.random() * 70) + 'vh';
+      p.style.animationDelay = Math.random() * 2 + 's'
       if (i % 3 === 0){
         p.classList.add('fast')
+        
       }
       else if (i % 2 === 0){
         p.classList.add('medium')
@@ -21,7 +23,5 @@ function Star(){
   }
 }
 
-const clock = new Star();
-//Какой нахуй клок?
-clock.initStar();
-console.log('work')
+const stars = new Star();
+stars.initStar();
