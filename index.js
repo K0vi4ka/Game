@@ -6,8 +6,9 @@ function Star(){
     for(let i = 1; i < 31; i++){
       const p = document.createElement('p');
       p.classList.add('star');
-      p.style.top = Math.floor(Math.random() * 70) + 'vh';
-      p.style.animationDelay = Math.random() * 2 + 's'
+      //p.style.transform = `translate(2000px,${Math.floor(Math.random() * 70)}vh)`;
+      p.style.top = Math.floor(Math.random() * (70 - 10 + 1) + 10) + 'vh'
+      p.style.animationDelay = Math.random() * 5 + 's'
       if (i % 3 === 0){
         p.classList.add('fast')
         

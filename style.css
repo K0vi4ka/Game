@@ -5,56 +5,59 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  background-color: rgb(29, 31, 22);
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 
 .ground {
   height: 20vh;
   width: 100%;
+  transform: translateY(80vh);
 }
 .ground-grass {
   height: 30%;
-  background-color: rgb(24, 64, 9);
+  background-color: rgb(17, 39, 9);
 }
 .ground-earth {
   height: 70%;
-  background-color: rgb(48, 32, 6);
+  background-color: rgb(28, 21, 11);
 }
 
 .moon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5%;
+  right: 0%;
+  z-index: 1;
 }
 
 .star {
   position: absolute;
   width: 3px;
   height: 3px;
+  right: -10px;
   background-color: rgb(255, 255, 255);
-  transform: translateX(2000px);
   will-change: transform;
+  z-index: 0;
 }
 .star.fast {
-  animation: starMove 3s linear infinite;
+  animation: animStar 3s linear infinite;
 }
 .star.medium {
-  animation: starMove 5s linear infinite;
+  animation: animStar 5s linear infinite;
 }
 .star.slow {
-  animation: starMove 10s linear infinite;
+  animation: animStar 10s linear infinite;
 }
 
-@keyframes starMove {
-  to {
-    transform: translateX(-10%);
+@keyframes animStar {
+  0% {
+    right: -10px;
+  }
+  100% {
+    right: 100%;
   }
 }
 
