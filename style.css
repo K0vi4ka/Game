@@ -52,6 +52,13 @@
   animation: animStar 10s linear infinite;
 }
 
+.player {
+  position: absolute;
+  transform: translateY(67vh);
+  z-index: 1;
+  height: 100px;
+}
+
 @keyframes animStar {
   0% {
     right: -10px;
