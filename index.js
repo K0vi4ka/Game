@@ -28,11 +28,15 @@ function Star(){
 function Player(){
   const self = this;
   let img = document.getElementById('player');
+
+  //бег
   let src = null;
   let idx = 1;
+  //движение право лево
   let timermove = null
   let posX = img.offsetLeft;
   let posY = 67;
+  //бег
   let run = null;
   let jumpIdx = 1;
 
@@ -57,22 +61,27 @@ function Player(){
         break;
       case 37: timermove = requestAnimationFrame(self.moveLeft);
         break;
-      case 38:timer = requestAnimationFrame(self.jump);
+      case 38:  if(jumpIdx ===1) timer = requestAnimationFrame(self.jump);
       break;
     }
   }
   self.moveRight = function(){
-    cancelAnimationFrame(timermove);
-    posX+=1;
-    img.style.transform = `translate(${posX}px,${posY}vh)`
-    timermove = requestAnimationFrame(self.moveRight)
+    if(posX< container.offsetWidth - img.offsetWidth){
+      cancelAnimationFrame(timermove);
+      posX+=1;
+      img.style.transform = `translate(${posX}px,${posY}vh)`
+      timermove = requestAnimationFrame(self.moveRight)
+    } 
   }
 
   self.moveLeft = function(){
-    cancelAnimationFrame(timermove);
-    posX+=-1;
-    img.style.transform = `translate(${posX}px,${posY}vh)`
-    timermove = requestAnimationFrame(self.moveLeft)
+    if(posX >=0){
+      cancelAnimationFrame(timermove);
+      posX+=-1;
+      img.style.transform = `translate(${posX}px,${posY}vh)`
+      timermove = requestAnimationFrame(self.moveLeft)
+    }
+    
   }
 
   self.jumpAnimation = function(){
@@ -91,10 +100,10 @@ function Player(){
   }
   
   self.jumpUpdateCoords = function(){
-    if(jumpIdx >=2 && jumpIdx <=5){
+    if(jumpIdx >=3 && jumpIdx <=10){
       posY+=-5;
     }
-    else if (jumpIdx >=5 && jumpIdx <10){
+    else if (jumpIdx >=11 && jumpIdx <19){
       posY+=5;
     }
     img.style.transform = `translate(${posX}px,${posY}vh)`;
@@ -104,9 +113,9 @@ function Player(){
   self.jump = function(){
     clearInterval(run);
     cancelAnimationFrame(self.jump)
-      if(jumpIdx <= 10){
+      if(jumpIdx <= 20){
         self.jumpAnimation();
-       setTimeout(()=>timer = requestAnimationFrame(self.jump),100);
+       setTimeout(()=>timer = requestAnimationFrame(self.jump),20);
       }
       else{
         run = setInterval(self.updateSoure,75)
