@@ -61,6 +61,38 @@
   will-change: transform;
 }
 
+.score {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: rgb(255, 255, 255);
+}
+
+.start-btn {
+  position: absolute;
+  top:calc(50% - 60px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 120px;
+  font-size: 48px;
+  border:1px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  transition: transform 1s;
+}
+
+.start-btn:hover {
+  transform: scale(1.5);
+}
+
+.animBtn {
+  animation-name: btnAnimation;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
 @keyframes animStar{
   0%{
       right: -10px;
@@ -69,3 +101,10 @@
     right: 100%;
   }
 }
+
+@keyframes btnAnimation {
+  100%{
+    transform: translateY(-55vw);
+  }
+}
+
