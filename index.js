@@ -1,8 +1,6 @@
 function backgorundModel(){
-  let btnmove = 0;
   let myView = null;
   let self = this
-  let timer = null;
 
   self.initModel = function(view){
     myView = view;
@@ -101,5 +99,5 @@ gameController.start();
 const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click',()=>{
   gameController.startGameMoveBtn();
-  setTimeout(startGame,5000);
+  setTimeout(startGame,1000);
 })
