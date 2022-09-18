@@ -18,6 +18,8 @@ function backgorundView(){
   const startBTN = document.getElementById('start-btn');
   let myField = null;
   const starArr = []
+  let score = null;
+  let scoreTimer = 0;
 
 
   self.initView = function(model,field){
@@ -49,10 +51,20 @@ function backgorundView(){
   }
 
   self.initScore = function(){
-    const p = document.createElement('p');
-    p.innerHTML = `Score: 0`;
-    p.classList.add('score');
-    container.appendChild(p)
+    score = document.createElement('p');
+    score.innerHTML = `Score: 0`;
+    score.classList.add('score');
+    container.appendChild(score)
+    setInterval(self.upadteScore,100)
+  }
+
+  self.upadteScore = function(){
+    scoreTimer++;
+    self.upadteScoreText();
+  }
+
+  self.upadteScoreText = function(){
+    score.innerHTML = `Score: ${scoreTimer}`
   }
 
   self.moveBtn = function(){
@@ -74,8 +86,9 @@ function backgorundController(){
     myField.initStar(); 
   }
 
-  self.startGameMoveBtn = function(){
-    myField.moveBtn()
+  self.startGame = function(){
+    myField.moveBtn();
+    myField.initScore();
   }
 }
 
@@ -98,6 +111,7 @@ gameController.start();
 
 const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click',()=>{
-  gameController.startGameMoveBtn();
+  gameController.startGame();
   setTimeout(startGame,1000);
+
 })

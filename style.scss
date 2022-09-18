@@ -54,11 +54,19 @@
 }
 
 .player {
+  display: none;
   position: absolute;
-  transform: translateY(67vh);
+  transform: translate(100px,67vh);
   z-index: 1;
   height: 100px;
   will-change: transform;
+
+  &-first-show{
+    animation-name:startAnimationRun;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
 }
 
 .score {
@@ -93,9 +101,10 @@
   animation-iteration-count: 1;
 }
 
+
 @keyframes animStar{
   0%{
-      right: -10px;
+    right: -10px;
   }
   100%{
     right: 100%;
@@ -107,4 +116,14 @@
     transform: translateY(-55vw);
   }
 }
+
+@keyframes startAnimationRun {
+  0%{
+    transform: translate(-100px,67vh);
+  }
+  100%{
+    transform: translate(115px,67vh);
+  }
+}
+
 
