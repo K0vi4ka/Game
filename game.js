@@ -15,7 +15,6 @@ function playerModel(){
   }
 
   self.moveLeft = function(){
-    console.log(posX)
     if(posX >=0){
       posX+=-1;
     }
@@ -30,7 +29,7 @@ function playerModel(){
   }
 
   self.updateJumpPosY = function(posY){
-    if(posY === 45){
+    if(posY === 35){
       jumpMove = 1;
     }
     return posY + jumpMove
@@ -42,6 +41,10 @@ function playerModel(){
 
   self.getPosX = function(){
     return posX;
+  }
+
+  self.getPosY = function(){
+    return posY;
   }
 }
 
@@ -79,6 +82,10 @@ function playerView(){
 
   self.getWidth = function(){
     return myField.offsetWidth;
+  }
+
+  self.getHeight = function(){
+    return myField.offsetHeight
   }
 
   self.getLeft = function(){
@@ -137,6 +144,10 @@ function playerView(){
     jumpAnimation = null;
   }
 
+  self.getPosY = function(){
+    return posY
+  }
+
   self.stopMove = function(e){
     if(e.keyCode === 39 || e.keyCode === 38 || e.keyCode === 37){
       moveObj[e.keyCode] = false;
@@ -144,6 +155,11 @@ function playerView(){
     if(e.keyCode === 37 || e.keyCode === 39){
       cancelAnimationFrame(timermove)
     }
+  }
+
+  self.gameOverPlayer = function(){
+    timermove = null;
+    myField.style.display = 'none'
   }
 }
 
@@ -162,6 +178,159 @@ function playerController(){
     myView.startRun();
     myView.showHero();
   }
+  
+  self.stopRun = function(){
+    myView.gameOverPlayer();
+  }
+}
+
+//10
+let enemyDelay = 10;
+
+function EnemyModel(){
+  let self = this;
+  let myModel = null;
+  let myView = null;
+
+  self.initModel = function(view){
+    myView = view;
+  }
+
+  self.getEnemyPos = function(arr){
+    return arr.map(item => item.offsetLeft + item.offsetWidth)
+  }
+
+  self.comparePos = function(enemy){
+    const playerHelp = 10;
+    if(enemy){
+      const compare1 = playerModel1.getPosX() + playerView1.getWidth() >= enemy.offsetLeft + playerHelp && playerModel1.getPosX() <= enemy.offsetLeft + enemy.offsetWidth - playerHelp;
+      const compare2 = playerView1.getPosY() + playerView1.getHeight() > enemy.offsetTop;
+      if((compare1 && compare2)){
+        return false
+      }
+      else{
+        return true
+      }
+    } 
+  }
+}
+
+function EnemyView(){
+  let self = this;
+  let myField = null;
+  let myModel = null;
+  let src;
+  const enemySrc = ["./IMG/Enemy/enemy1.png"];
+  let enemyContainer = [];
+
+  self.initView = function(model,field){
+    myModel = model;
+    myField = field;
+  }
+
+  self.initEmeny = function(){
+    const enemy = self.createEnemy();
+    enemyContainer.push(enemy);
+    self.updateImg(enemy);
+    myField.appendChild(enemy);
+  }
+
+  self.createEnemy = function(){
+    const enemy = document.createElement('img');
+    enemy.setAttribute('alt','enemy');
+    enemy.setAttribute('class','enemy');
+    return enemy;
+  }
+
+  self.chooseEnemy = function(){
+    src = enemySrc[0];
+  }
+
+  self.updateImg = function(enemy){
+    src = self.chooseEnemy();
+    enemy.setAttribute('src',enemySrc);
+    self.startMoveAnimetion(enemy)
+  }
+  
+  self.startMoveAnimetion = function(enemy){
+    enemy.classList.add('enemy-move')
+    self.removeEnemy(enemy);
+  }
+
+  self.removeEnemy = function(enemy){
+    setTimeout(()=>{
+      myField.removeChild(enemy);
+    },5500)
+  }
+
+  self.updateEnemyArray = function(){
+    if(enemyContainer.length !== 0){
+      myModel.getEnemyPos(enemyContainer).forEach((item,index) =>{
+        if(item< playerModel1.getPosX()){
+            enemyContainer = enemyContainer.filter(enm => enm !== enemyContainer[index]);
+        }
+      })
+    }
+  }
+
+  self.comparePos = function(){
+    console.log(myModel.comparePos(enemyContainer[0]))
+    if(myModel.comparePos(enemyContainer[0]) === false){
+      return false;
+    }
+    else{
+      return true
+    }
+  }
+}
+
+function EnemyController(){
+  let self = this;
+  let myModel = null;
+  let myView = null;
+
+  self.initController = function(model,view){
+    myModel = model;
+    myView = view;
+  }
+
+  self.startSpawnEnemy = function(){
+    setInterval(() =>{
+      myView.initEmeny();
+      enemyDelay === 1? 2: enemyDelay-=0.5;
+    },enemyDelay*1000);
+  }
+
+  self.upgradeViewArr = function(){
+    myView.updateEnemyArray();
+  }
+
+  self.gameOverEnemy = function(){
+    console.log(myView.comparePos())
+    if(myView.comparePos() === false){
+      playerController1.stopRun();
+      showEndBlock();
+    }
+  }
+}
+
+function showEndBlock(){
+  const div = document.createElement('div');
+  div.classList.add('end-game-block')
+  const p = document.createElement('p');
+  p.innerHTML = `Вы проиграли, пробежав ${gameView.getScore()}`
+  const buttonsContainer = document.createElement('div');
+  const btn1 = document.createElement('button');
+  btn1.innerHTML = "В главное меню";  
+  btn1.classList.add('end-game-block__button')
+  const btn2 = document.createElement('button');
+  btn2.innerHTML = "Начать заново";  
+  btn2.classList.add('end-game-block__button')
+  buttonsContainer.appendChild(btn1);
+  buttonsContainer.appendChild(btn2);
+  div.appendChild(p);
+  div.appendChild(buttonsContainer);
+  container.appendChild(div);
 }
 
 
@@ -169,11 +338,18 @@ const playerModel1 = new playerModel();
 const playerController1 = new playerController();
 const playerView1 = new playerView();
 const img = document.getElementById('player')
-console.log(playerModel1,playerView1,playerController1)
-
 playerModel1.initModel(playerView1);
 playerView1.initView(playerModel1,img);
 playerController1.initController(playerModel1,playerView1);
-
 playerController1.startRun();
 
+const enemyModel1 = new EnemyModel();
+const enemyView1 = new EnemyView();
+const enemyController1 = new EnemyController();
+let container = document.getElementById('container');
+enemyModel1.initModel(enemyView1);
+enemyView1.initView(enemyModel1,container);
+enemyController1.initController(enemyModel1,enemyView1);
+let game = enemyController1.startSpawnEnemy();
+setInterval(enemyController1.upgradeViewArr,100);
+setInterval(enemyController1.gameOverEnemy,100);

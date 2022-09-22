@@ -70,6 +70,21 @@ function backgorundView(){
   self.moveBtn = function(){
     startBTN.classList.add('animBtn')
   }
+
+  self.endScore = function(){
+    if(!localStorage.scores){
+      localStorage.setItem('scores',JSON.stringify([scoreTimer]))
+    }
+    else{
+      let scores = JSON.parse(localStorage.getItem(localStorage.scores));
+      scores = [...scoreTimer,scores];
+      score.sort()
+    }
+  }
+
+  self.getScore = function(){
+    return scoreTimer;
+  }
 }
 
 function backgorundController(){
@@ -113,5 +128,6 @@ const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click',()=>{
   gameController.startGame();
   setTimeout(startGame,1000);
-
 })
+
+//gameView.endScore();

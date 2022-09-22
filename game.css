@@ -1,0 +1,132 @@
+.player {
+  display: none;
+  position: absolute;
+  transform: translate(100px, 67vh);
+  z-index: 1;
+  height: 100px;
+  will-change: transform;
+}
+.player-first-show {
+  animation-name: startAnimationRun;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  right: -10px;
+  background-color: rgb(255, 255, 255);
+  will-change: transform;
+  z-index: 0;
+}
+.star.fast {
+  animation: animStar 3s linear infinite;
+}
+.star.medium {
+  animation: animStar 5s linear infinite;
+}
+.star.slow {
+  animation: animStar 10s linear infinite;
+}
+
+.score {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: rgb(255, 255, 255);
+}
+
+.start-btn {
+  position: absolute;
+  top: calc(50% - 60px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 120px;
+  font-size: 48px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  transition: transform 1s;
+}
+.start-btn:hover {
+  transform: scale(1.5);
+}
+
+.animBtn {
+  animation-name: btnAnimation;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+.enemy {
+  position: absolute;
+  transform: translateY(51vh);
+  height: 70px;
+  left: 2000px;
+}
+.enemy-move {
+  animation-name: enemyAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+.end-game-block {
+  position: absolute;
+  top: calc(50% - 60px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 120px;
+  color: #FFFFFF;
+  background-color: transparent;
+  font-size: 24px;
+}
+.end-game-block__button {
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 5px;
+  margin: 10px;
+}
+.end-game-block__button:hover {
+  transform: scale(1.2);
+}
+
+@keyframes animStar {
+  0% {
+    right: -10px;
+  }
+  100% {
+    right: 100%;
+  }
+}
+@keyframes btnAnimation {
+  100% {
+    transform: translateY(-55vw);
+  }
+}
+@keyframes startAnimationRun {
+  0% {
+    transform: translate(-100px, 67vh);
+  }
+  100% {
+    transform: translate(115px, 67vh);
+  }
+}
+@keyframes enemyAnimation {
+  from {
+    left: 110%;
+  }
+  to {
+    left: -10%;
+  }
+}
+
+/*# sourceMappingURL=game.css.map */
