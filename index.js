@@ -76,9 +76,11 @@ function backgorundView(){
       localStorage.setItem('scores',JSON.stringify([scoreTimer]))
     }
     else{
-      let scores = JSON.parse(localStorage.getItem(localStorage.scores));
-      scores = [...scoreTimer,scores];
-      score.sort()
+      let scores = JSON.parse(localStorage.getItem('scores'));
+      scores.push(scoreTimer);
+      console.warn(scores)
+      scores.sort(SortRecords);
+      localStorage.setItem('scores',JSON.stringify(scores))
     }
   }
 
@@ -114,6 +116,12 @@ function startGame(){
   })
 }
 
+function SortRecords(a,b){
+  if(a > b) return -1;
+  if (a===b) return 0;
+  if(a<b) return 1;
+}
+
 const gameController = new backgorundController();
 const gameModel = new backgorundModel();
 const gameView = new backgorundView();
@@ -129,5 +137,3 @@ startBtn.addEventListener('click',()=>{
   gameController.startGame();
   setTimeout(startGame,1000);
 })
-
-//gameView.endScore();

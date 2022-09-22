@@ -87,17 +87,6 @@
   background-color: transparent;
   font-size: 24px;
 }
-.end-game-block__button {
-  height: 30px;
-  background-color: transparent;
-  border: 1px solid #FFFFFF;
-  color: #FFFFFF;
-  border-radius: 5px;
-  margin: 10px;
-}
-.end-game-block__button:hover {
-  transform: scale(1.2);
-}
 
 @keyframes animStar {
   0% {

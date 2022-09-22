@@ -90,18 +90,6 @@
   color: #FFFFFF;
   background-color: transparent;
   font-size: 24px;
-
-  &__button {
-    height: 30px;
-    background-color: transparent;
-    border: 1px solid #FFFFFF;
-    color: #FFFFFF;
-    border-radius: 5px;
-    margin:10px;
-    &:hover{
-      transform: scale(1.2);
-    }
-  }
 }
 
 @keyframes animStar{

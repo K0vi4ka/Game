@@ -288,6 +288,7 @@ function EnemyController(){
   let self = this;
   let myModel = null;
   let myView = null;
+  let enemyTimer = null;
 
   self.initController = function(model,view){
     myModel = model;
@@ -295,7 +296,7 @@ function EnemyController(){
   }
 
   self.startSpawnEnemy = function(){
-    setInterval(() =>{
+    enemyTimer = setInterval(() =>{
       myView.initEmeny();
       enemyDelay === 1? 2: enemyDelay-=0.5;
     },enemyDelay*1000);
@@ -305,11 +306,17 @@ function EnemyController(){
     myView.updateEnemyArray();
   }
 
+  self.stopEnemySpawn = function(){
+    clearInterval(enemyTimer)
+  }
+
   self.gameOverEnemy = function(){
     console.log(myView.comparePos())
     if(myView.comparePos() === false){
       playerController1.stopRun();
       showEndBlock();
+      self.stopEnemySpawn();
+      gameView.endScore();
     }
   }
 }
@@ -320,14 +327,28 @@ function showEndBlock(){
   const p = document.createElement('p');
   p.innerHTML = `Вы проиграли, пробежав ${gameView.getScore()}`
   const buttonsContainer = document.createElement('div');
+
   const btn1 = document.createElement('button');
+  btn1.classList.add('small-button');
+  const linkMain = document.createElement('a');
+  linkMain.setAttribute('href','./index.html');
+  linkMain.classList.add('somelink')
   btn1.innerHTML = "В главное меню";  
-  btn1.classList.add('end-game-block__button')
+  linkMain.appendChild(btn1);
+  btn1.setAttribute('onclick','openMainPage()')
+
+
   const btn2 = document.createElement('button');
+  btn2.classList.add('small-button');
+  const linkGame = document.createElement('a');
+  linkGame.setAttribute('href','./game.html');
+  linkGame.classList.add('somelink')
   btn2.innerHTML = "Начать заново";  
-  btn2.classList.add('end-game-block__button')
-  buttonsContainer.appendChild(btn1);
-  buttonsContainer.appendChild(btn2);
+  linkGame.appendChild(btn2);
+  btn2.setAttribute('onclick','openGamePage()') 
+
+  buttonsContainer.appendChild(linkGame);
+  buttonsContainer.appendChild(linkMain);
   div.appendChild(p);
   div.appendChild(buttonsContainer);
   container.appendChild(div);

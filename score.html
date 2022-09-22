@@ -7,21 +7,22 @@
   <title>Score</title>
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./score.css">
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
   <div class="container" id="container">
     <svg xmlns="http://www.w3.org/2000/svg" class="moon" >
       <circle cx="50" cy="50" r="30" fill='rgb(217, 224, 168)' />
     </svg>
+    <a href="index.html">
+    <svg class="arrow-right score-btn" viewBox="0 0 100 85" width = 50>
+      <polygon onclick="openMainPage()"  points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056" fill="#ffffff" />
+    </svg></a>
 
-    <div class="choose-page">
-      <a href="./game.html">
-        <button class="small-button choose-page__button game_link" onclick="openGamePage()"><p>Начать игру</p></button>
-      </a>
-      <a href="./score.html" class="somelink">
-        <button class="small-button choose-page__button score_link" onclick="openScorePage()">Рекорды</button>
-      </a>
+    <div class="score-container">
+      <h1>Best Score</h1>
+      <div class="scores">
+
+      </div>
     </div>
 
     <div class="ground">
@@ -30,6 +31,6 @@
     </div>
   </div>
   <script src ='score.js'></script>
-  <script src = 'spa.js'></script>
+  <script src="./spa.js"></script>
 </body>
 </html>

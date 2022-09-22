@@ -33,4 +33,50 @@
   z-index: 1;
 }
 
+.small-button {
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 5px;
+  margin: 10px;
+}
+.small-button:hover {
+  transform: scale(1.2);
+}
+
+.choose-page {
+  position: absolute;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.choose-page__button {
+  width: 300px;
+  height: 50px;
+  font-size: 35px;
+}
+
+.somelink {
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 5px;
+}
+
+.score-btn {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+
+.arrow-right {
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  transform: rotate(180deg);
+  padding: 5px;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Score</title>
+  <title>Runner</title>
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./score.css">
+  <link rel="stylesheet" href="./game.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -14,22 +14,17 @@
     <svg xmlns="http://www.w3.org/2000/svg" class="moon" >
       <circle cx="50" cy="50" r="30" fill='rgb(217, 224, 168)' />
     </svg>
+    
+    <button id="start-btn" class="start-btn">Начать играть</button>
 
-    <div class="choose-page">
-      <a href="./game.html">
-        <button class="small-button choose-page__button game_link" onclick="openGamePage()"><p>Начать игру</p></button>
-      </a>
-      <a href="./score.html" class="somelink">
-        <button class="small-button choose-page__button score_link" onclick="openScorePage()">Рекорды</button>
-      </a>
-    </div>
+    <img src="./IMG/Player/run/1.png" alt="player" class="player" id="player">
 
     <div class="ground">
       <div class="ground-grass"></div>
       <div class="ground-earth"></div>  
     </div>
   </div>
-  <script src ='score.js'></script>
-  <script src = 'spa.js'></script>
+  <script src="index.js"></script>
+  <script src="spa.js"></script>
 </body>
 </html>
