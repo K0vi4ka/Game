@@ -94,7 +94,7 @@ function playerView(){
 
   self.updateImg = function(){
     let idx = myModel.updateSoure();
-    myField.setAttribute('src',`./IMG/Player/run/${idx}.png`);
+    myField.setAttribute('src',`..//IMG/Player/run/${idx}.png`);
   }
 
   self.startRun = function(){
@@ -161,6 +161,12 @@ function playerView(){
     timermove = null;
     myField.style.display = 'none'
   }
+
+  
+  self.hideBackButton = function(){
+    const btn = document.querySelector('.score-btn');
+    btn.classList.add('animBtn')
+  }
 }
 
 function playerController(){
@@ -174,13 +180,17 @@ function playerController(){
   }
 
   self.startRun = function(){
-    console.log('workC')
     myView.startRun();
     myView.showHero();
   }
   
   self.stopRun = function(){
     myView.gameOverPlayer();
+  }
+
+  
+  self.hideBackButton = function(){
+        myView.hideBackButton();
   }
 }
 
@@ -220,7 +230,7 @@ function EnemyView(){
   let myField = null;
   let myModel = null;
   let src;
-  const enemySrc = ["./IMG/Enemy/enemy1.png"];
+  const enemySrc = ["..//IMG/Enemy/enemy1.png"];
   let enemyContainer = [];
 
   self.initView = function(model,field){
@@ -371,6 +381,6 @@ let container = document.getElementById('container');
 enemyModel1.initModel(enemyView1);
 enemyView1.initView(enemyModel1,container);
 enemyController1.initController(enemyModel1,enemyView1);
-let game = enemyController1.startSpawnEnemy();
+enemyController1.startSpawnEnemy();
 setInterval(enemyController1.upgradeViewArr,100);
 setInterval(enemyController1.gameOverEnemy,100);

@@ -68,6 +68,8 @@ function backgorundView(){
   }
 
   self.moveBtn = function(){
+    const btn = document.querySelector('.score-btn');
+    btn.classList.add('animBtn')
     startBTN.classList.add('animBtn')
   }
 
@@ -110,7 +112,7 @@ function backgorundController(){
 }
 
 function startGame(){
-  $.ajax('./game.js',{
+  $.ajax('..//scripts/game.js',{
     type: 'GET',
     dataType: 'script'
   })

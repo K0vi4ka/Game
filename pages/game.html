@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Runner</title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./game.css">
+  <title>RunnerGame</title>
+  <link rel="stylesheet" href="..//styles/style.css">
+  <link rel="stylesheet" href="..//styles/game.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -14,17 +14,21 @@
     <svg xmlns="http://www.w3.org/2000/svg" class="moon" >
       <circle cx="50" cy="50" r="30" fill='rgb(217, 224, 168)' />
     </svg>
+    <a href="./index.html">
+      <svg class="arrow-right score-btn" viewBox="0 0 100 85" width = 50>
+        <polygon onclick="openMainPage()"  points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056" fill="#ffffff" />
+      </svg></a>
     
     <button id="start-btn" class="start-btn">Начать играть</button>
 
-    <img src="./IMG/Player/run/1.png" alt="player" class="player" id="player">
+    <img src="..//IMG/Player/run/1.png" alt="player" class="player" id="player">
 
     <div class="ground">
       <div class="ground-grass"></div>
       <div class="ground-earth"></div>  
     </div>
   </div>
-  <script src="index.js"></script>
-  <script src="spa.js"></script>
+  <script src="..//scripts/index.js"></script>
+  <script src="..//scripts/spa.js"></script>
 </body>
 </html>

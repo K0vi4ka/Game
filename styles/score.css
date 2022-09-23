@@ -9,13 +9,17 @@
 }
 
 .scores {
-  width: 80%;
-  height: 500px;
+  position: relative;
+  width: 300px;
+  height: 365px;
   border: 1px solid #FFFFFF;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .score {
   display: flex;
+  height: 20px;
   justify-content: space-around;
   width: 100%;
   border-bottom: 2px solid #FFFFFF;
