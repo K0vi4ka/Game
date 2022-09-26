@@ -80,7 +80,6 @@ function backgorundView(){
     else{
       let scores = JSON.parse(localStorage.getItem('scores'));
       scores.push(scoreTimer);
-      console.warn(scores)
       scores.sort(SortRecords);
       localStorage.setItem('scores',JSON.stringify(scores))
     }

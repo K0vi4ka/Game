@@ -105,7 +105,6 @@ function playerView(){
     if(!aniTimer){
       if(e.keyCode === 39 || e.keyCode === 38 || e.keyCode === 37){
         moveObj[e.keyCode] = true;
-        console.log(moveObj)
       }
       if(moveObj[39] === true){
         timermove = requestAnimationFrame(self.moveRight);
@@ -206,6 +205,10 @@ function EnemyModel(){
     myView = view;
   }
 
+  self.randomEnemyScr = function(len){
+    return Math.floor(Math.random() * len);
+  }
+
   self.getEnemyPos = function(arr){
     return arr.map(item => item.offsetLeft + item.offsetWidth)
   }
@@ -230,7 +233,7 @@ function EnemyView(){
   let myField = null;
   let myModel = null;
   let src;
-  const enemySrc = ["../IMG/Enemy/enemy1.png"];
+  const enemySrc = ["../IMG/Enemy/enemy1.png","../IMG/Enemy/enemy2.png"];
   let enemyContainer = [];
 
   self.initView = function(model,field){
@@ -253,12 +256,13 @@ function EnemyView(){
   }
 
   self.chooseEnemy = function(){
-    src = enemySrc[0];
+     src = enemySrc[myModel.randomEnemyScr(enemySrc.length)];
+     console.log(src)
   }
 
   self.updateImg = function(enemy){
-    src = self.chooseEnemy();
-    enemy.setAttribute('src',enemySrc);
+    self.chooseEnemy();
+    enemy.setAttribute('src',src);
     self.startMoveAnimetion(enemy)
   }
   
@@ -284,7 +288,6 @@ function EnemyView(){
   }
 
   self.comparePos = function(){
-    console.log(myModel.comparePos(enemyContainer[0]))
     if(myModel.comparePos(enemyContainer[0]) === false){
       return false;
     }
@@ -321,7 +324,6 @@ function EnemyController(){
   }
 
   self.gameOverEnemy = function(){
-    console.log(myView.comparePos())
     if(myView.comparePos() === false){
       playerController1.stopRun();
       showEndBlock();
