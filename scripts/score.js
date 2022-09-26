@@ -22,7 +22,6 @@ function addItems(){
     scoreContainer.appendChild(p);
     console.log(scoreContainer)
   }
-  
 }
 
-addItems()
+document.onload= addItems();

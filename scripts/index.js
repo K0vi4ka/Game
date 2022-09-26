@@ -89,7 +89,7 @@ function backgorundView(){
   self.getScore = function(){
     return scoreTimer;
   }
-}
+ }
 
 function backgorundController(){
   let self = this
@@ -112,7 +112,7 @@ function backgorundController(){
 }
 
 function startGame(){
-  $.ajax('..//scripts/game.js',{
+  $.ajax('../scripts/game.js',{
     type: 'GET',
     dataType: 'script'
   })
