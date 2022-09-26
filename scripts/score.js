@@ -24,4 +24,6 @@ function addItems(){
   }
 }
 
-document.onload= addItems();
+(function(){
+  addItems();
+})();

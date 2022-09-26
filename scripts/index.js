@@ -124,17 +124,21 @@ function SortRecords(a,b){
 }
 
 const gameController = new backgorundController();
-const gameModel = new backgorundModel();
-const gameView = new backgorundView();
-const container = document.getElementById('container')
+  const gameModel = new backgorundModel();
+  const gameView = new backgorundView();
+  const container = document.getElementById('container')
+  const startBtn = document.getElementById('start-btn');
+  gameModel.initModel(gameView);
+  gameView.initView(gameModel,container);
+  gameController.initController(gameModel,gameView);
 
-gameModel.initModel(gameView);
-gameView.initView(gameModel,container);
-gameController.initController(gameModel,gameView);
-gameController.start();
+(function(){
+  gameController.start();
+  startBtn.addEventListener('click',()=>{
+    gameController.startGame();
+    setTimeout(startGame,1000);
+  })
+})();
 
-const startBtn = document.getElementById('start-btn');
-startBtn.addEventListener('click',()=>{
-  gameController.startGame();
-  setTimeout(startGame,1000);
-})
+
+

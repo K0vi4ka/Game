@@ -70,12 +70,10 @@ function playerView(){
   self.showHero = function(){
     myField.style.display = 'block'
     myField.classList.add('player-first-show');
-    aniTimer = setTimeout(self.removeHeroStyle,3000);
   }
 
   self.removeHeroStyle = function(){
    myField.classList.remove('player-first-show')
-   aniTimer = null;
    document.addEventListener('keydown',playerView1.move)
    document.addEventListener('keyup',playerView1.stopMove);
   }
@@ -181,15 +179,15 @@ function playerController(){
   self.startRun = function(){
     myView.startRun();
     myView.showHero();
+    setTimeout(myView.removeHeroStyle,3000)
   }
   
   self.stopRun = function(){
     myView.gameOverPlayer();
   }
 
-  
   self.hideBackButton = function(){
-        myView.hideBackButton();
+     myView.hideBackButton();
   }
 }
 
@@ -257,7 +255,6 @@ function EnemyView(){
 
   self.chooseEnemy = function(){
      src = enemySrc[myModel.randomEnemyScr(enemySrc.length)];
-     console.log(src)
   }
 
   self.updateImg = function(enemy){
@@ -370,20 +367,25 @@ function showEndBlock(){
   const playerController1 = new playerController();
   const playerView1 = new playerView();
   const img = document.getElementById('player')
-  playerModel1.initModel(playerView1);
-  playerView1.initView(playerModel1,img);
-  playerController1.initController(playerModel1,playerView1);
+
   
   const enemyModel1 = new EnemyModel();
   const enemyView1 = new EnemyView();
   const enemyController1 = new EnemyController();
   let container = document.getElementById('container');
-  enemyModel1.initModel(enemyView1);
-  enemyView1.initView(enemyModel1,container);
-  enemyController1.initController(enemyModel1,enemyView1);
-  playerController1.startRun();  
-  enemyController1.startSpawnEnemy();
-  setInterval(enemyController1.upgradeViewArr,100);
-  setInterval(enemyController1.gameOverEnemy,100);
+  
 
+  (function(){
+    playerModel1.initModel(playerView1);
+    playerView1.initView(playerModel1,img);
+    playerController1.initController(playerModel1,playerView1);
+
+    enemyModel1.initModel(enemyView1);
+    enemyView1.initView(enemyModel1,container);
+    enemyController1.initController(enemyModel1,enemyView1);
+    playerController1.startRun();  
+    enemyController1.startSpawnEnemy();
+    setInterval(enemyController1.upgradeViewArr,100);
+    setInterval(enemyController1.gameOverEnemy,100);
+  })();
 
