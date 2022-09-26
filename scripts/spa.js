@@ -1,9 +1,3 @@
-  const gameBtn = document.querySelector('game_link')
-  const scoreBtn = document.querySelector('score_link');
-
-  gameBtn.addEventListener('click',openGamePage);
-  scoreBtn.addEventListener('click',openScoreLink);
-
   function openGamePage(e){
     e.preventDefault();
     window.location.hash = 'game'
