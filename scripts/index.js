@@ -81,6 +81,9 @@ function backgorundView(){
       let scores = JSON.parse(localStorage.getItem('scores'));
       scores.push(scoreTimer);
       scores.sort(SortRecords);
+      if(scores.length > 20){
+        scores.pop();
+      }
       localStorage.setItem('scores',JSON.stringify(scores))
     }
   }
